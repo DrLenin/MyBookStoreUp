@@ -14,6 +14,6 @@ namespace UpBookStore.Models
 
         public DbSet<Categoryi> Categoryis { get; set; }
 
-
+        public DbSet<Sell> Sells { get; set; }
     }
 }

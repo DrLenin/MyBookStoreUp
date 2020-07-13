@@ -22,6 +22,13 @@ namespace UpBookStore.Models
         public Auftor Auftor { get; set; }
         [ForeignKey("Category_ID")]
         public Categoryi Categoryi { get; set; }
-        
+
+        public List<Sell> Sell { get; set; }
+
+        public Book()
+        {
+            Sell = new List<Sell>();
+        }
+
     }
 }
