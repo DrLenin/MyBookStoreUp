@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "Category";
+}
+<!doctype html>
+<html lang="ru">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    
+</head>
+<body>
+    <form method="post" action="">
+        <div class="form-group" >
+            <input type="hidden" value="@ViewBag.ID.ID" name="id" />
+            <label for="exampleInputEmail1">Укажите критерий для поиска</label>
+            <input type="text" name="TextSearch" class="form-control" id="exampleInputEmail1">
+            <small id="emailHelp" class="form-text text-muted">Easy to find</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Выберите в какой категории искать</label>
+            <select name="ClasSearch" class="form-control" id="exampleFormControlSelect1">
+                <option value="Автор">По автору</option>
+                <option value="Название">По названию книги</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Поиск</button>
+    </form>
+    @if (ViewBag.Flag == false)
+    {
+        @Html.ActionLink("Список отсортирован по убыванию", "Category", "Home", new { id = ViewBag.ID.ID, flag = true }, new { @class = "page-link" })
+    }
+    else
+    {
+        @Html.ActionLink("Список отсортирован по возврастанию ", "Category", "Home", new { id = ViewBag.ID.ID, flag = false }, new { @class = "page-link" })
+    }
+
+    <h2>@ViewBag.ID.Names</h2>
+    <div class="row row-cols-1 row-cols-md-3">
+        @foreach (var d in ViewBag.Books)
+        {
+
+
+            <div class="col mb-4">
+                <div class="card h-20">
+                    <img src="https://trikky.ru/wp-content/blogs.dir/1/files/2014/12/getImage-32.jpg" class="img-fluid" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@d.Name</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+    @if (!(ViewBag.MoveIndexMax <= 5))
+    {
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                @{int link = 0;
+
+                    for (int d = 0; d < ViewBag.MoveIndexMax; d = d + 5)
+                    {
+                        link = link + 1;
+
+                        if (ViewBag.FlagF == true)
+                        {
+                            <li class="page-item">@Html.ActionLink(link.ToString(), "MoveIndexs", "Home", new { indexs = d, id = ViewBag.ID.ID, TextSearch = ViewBag.TextSearch, idPoick = ViewBag.OjectScrin }, new { @class = "page-link" })</li>
+                        }
+                        else if (ViewBag.FlagF == false)
+                        {
+                            <li class="page-item">@Html.ActionLink(link.ToString(), "MoveIndexs", "Home", new { indexs = d, id = ViewBag.ID.ID, TextSearch = ViewBag.TextSearch, idPoick = ViewBag.OjectScrin }, new { @class = "page-link" })</li>
+                        }
+                        else if (ViewBag.Flag == false)
+                        {
+                            <li class="page-item">@Html.ActionLink(link.ToString(), "MoveIndexs", "Home", new { indexs = d, id = ViewBag.ID.ID }, new { @class = "page-link" })</li>
+                        }
+                        else if (ViewBag.Flag == true)
+                        {
+                            <li class="page-item">@Html.ActionLink(link.ToString(), "MoveIndexs", "Home", new { indexs = d, id = ViewBag.ID.ID, flag = true }, new { @class = "page-link" })</li>
+                        }
+
+                    }
+                }
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    }
+
+
+</body>
+</html>
+

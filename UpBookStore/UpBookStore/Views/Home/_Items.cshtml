@@ -1,0 +1,17 @@
+﻿@model IEnumerable<UpBookStore.Models.Book>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <th scope="row">1</th>
+        <td>@item.Name</td>
+        @if (ViewBag.roles == "admin")
+        {
+            <td><p id="ddddd">@Ajax.ActionLink("Удалить", "DeletB", new { id = item.ID }, new AjaxOptions { UpdateTargetId = "results" })<p><a href="/Home/UpdateB/@item.ID">Обновить</a></td>
+        }
+        else
+        {
+            <td><p><a href="#">Подробнее</a></p></td>
+        }
+    </tr>
+}

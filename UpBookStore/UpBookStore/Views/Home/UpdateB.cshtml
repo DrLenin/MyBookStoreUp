@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "UpdateB";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <form method="post" action="">
+        <input type="hidden" value="@ViewBag.Id" name="ID" />
+        <table>
+            <tr>
+                <td><p>Введите новое название </p></td>
+                <td><input type="text" name="Name" /> </td>
+            </tr>
+            <tr>
+                <td><p>Выберите автора: </p></td>
+                <td>
+                    <select id="wherere" name="wherere">
+                        @foreach (var b in ViewBag.Aufrots)
+                        {
+                            <option value="@b.FIO">@b.FIO</option>
+                        }
+
+                    </select>
+                </td>
+            </tr>
+            <tr><td><input type="submit" value="Обновить" /> </td><td></td></tr>
+        </table>
+    </form>
+

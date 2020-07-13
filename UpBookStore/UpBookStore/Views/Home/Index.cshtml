@@ -1,0 +1,49 @@
+﻿@using UpBookStore.Models;
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.Owin;
+@using System;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Web;
+@using System.Web.Mvc;
+@using UpBookStore.Models;
+@{
+    ViewBag.Title = "Библиотека книг";
+}
+
+<div class="alert alert-warning" role="alert" id="alerWarning">
+    <h1>@ViewBag.roles</h1>
+</div>
+<div>
+    <h3>Библиотека книг</h3>
+    <table class="table table-hover table-borderless">
+        <thead>
+            <tr>
+                <th scope="col">Номер</th>
+                <th scope="col">Автор</th>
+                <th scope="col">Книги</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int index = 0;
+                foreach (var b in ViewBag.Aufrots)
+                {
+                    int count = 0;
+                    foreach(var book in ViewBag.Books)
+                    {
+                        if(b.ID == book.Auftor.ID) { count++; }
+                    }
+                    index++;
+                    <tr>
+                        <th scope="row">@index.ToString()</th>
+                        <td>@b.FIO</td>
+
+                        <td><p>@count.ToString()</p><p><a href="/Home/Buy/@b">Показать</a></p></td>
+
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

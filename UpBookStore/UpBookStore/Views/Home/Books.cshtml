@@ -1,0 +1,157 @@
+﻿@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.Owin;
+@using System;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Web;
+@using System.Web.Mvc;
+@using UpBookStore.Models;
+@{
+    ViewBag.Title = "Книги";
+}
+
+    <div>
+
+        <button id="buttons">d</button>
+        <div id="results"></div>
+        <h3>Список книг</h3>
+        <table id="table" class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <--!></--!>
+                    <th scope="col">Название</th>
+                    <th scope="col">Действия</th>
+                </tr>
+            </thead>
+            <tbody id="scrolList">
+                @Html.Partial("_Items")
+            </tbody>
+        </table>
+        <div id="loading"><img src='@Url.Content("https://metanit.com/sharp/articles/mvc/loading_spinner.gif")'></div>
+        @if (ViewBag.roles == "admin")
+        {
+            @Html.BeginForm("Books")
+            {
+                <table>
+                    <tr>
+                        <td><p>Введите название: </p></td>
+                        <td><input id="name" type="text" name="Name" /> </td>
+                    </tr>
+                    <tr>
+                        <td><p>Выберите автора: </p></td>
+                        <td>
+                            <select id="auftor" name="wherere">
+                                @foreach (var b in ViewBag.Aufrots)
+                                {
+                                    <option value="@b.FIO">@b.FIO</option>
+                                }
+
+                            </select>
+                        </td>
+                    <tr>
+                        <td><p>Выберите категорию: </p></td>
+                        <td>
+                            <select id="category" name="wherere2">
+                                @foreach (var c in ViewBag.Category)
+                                {
+                                    <option value="@c.Names">@c.Names</option>
+                                }
+
+                            </select>
+                        </td>
+                    </tr>
+                    <tr><td><input id="ajaxTestButton1" type="submit" value="Добавить" /> </td><td></td></tr>
+                </table>
+            }
+        }
+        <div id="toastjs"></div>
+        <script type="text/javascript">
+                $('#ajaxTestButton1').click(function () {
+                    //toastr.info('Page Loaded!');
+                    var diiv = $(results);
+                    diiv.empty();
+                    var textname = $('#name').val();
+                    if (textname.length <= 1) {
+                        toastr.error('Данные не добавлены')
+                        diiv.append('<div class="alert alert-danger" role="alert">Данные не добавлены</div>');
+                    } else {
+                        toastr.success('Данные добавлены')
+                        diiv.append('<div class="alert alert-warning" role="alert">Данные добавлены</div>');
+                        var textauftor = $("#auftor option:selected").text();
+                         @{int index = 1;}
+                        var dd = @index;
+                        $('#table tr:last').after('<tr><th scope="row">' + dd + '</th><td>' + textauftor + '</td><td>' + textname + '</td></tr>');
+
+                    }
+                }
+                    )
+                     $('#table').on( 'click','td' ,function(){
+                         $(this).parent().remove();
+
+                     })
+
+                     // fire toastr.js
+$('button').on('click',function () {
+    toastr.info('Work saved! Sike...')
+})
+            toastr.options = { "positionClass": "toast-top-center" }
+
+
+    $(function () {
+
+        $('div#loading').hide();
+
+        var page = 0;
+        var _inCallback = false;
+        function loadItems() {
+            if (page > -1 && !_inCallback) {
+                _inCallback = true;
+                page++;
+                $('div#loading').show();
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/Home/Books/' + page,
+                    success: function (data) {
+                        if (data != '') {
+                            $("#scrolList").append(data);
+                        }
+                        else {
+                            page = -1;
+                        }
+                        _inCallback = false;
+                        $("div#loading").hide();
+                    }
+                });
+            }
+    }
+    // обработка события скроллинга
+    $(window).scroll(function () {
+        if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+
+            loadItems();
+        }
+    });
+            })
+            jQuery(document).ready(function($){
+    $('<style>'+
+        '.scrollTop{ display:none; z-index:9999; position:fixed;'+
+            'bottom:20px; left:90%; width:88px; height:125px;'+
+            'background:url(https://biznessystem.ru/img/arrow.png) 0 0 no-repeat; }' +
+        '.scrollTop:hover{ background-position:0 -133px;}'
+    +'</style>').appendTo('body');
+    var
+    speed = 550,
+    $scrollTop = $('<a href="#" class="scrollTop">').appendTo('body');		
+    $scrollTop.click(function(e){
+        e.preventDefault();
+        $( 'html:not(:animated),body:not(:animated)' ).animate({ scrollTop: 0}, speed );
+    });
+
+    //появление
+    
+});
+        </script>
+        <a href="#" title="Вернуться наверх" class="buttonup"><img src="https://img2.freepng.ru/20180525/ixt/kisspng-computer-icons-world-trade-organisation-clip-art-5b081fbbb6cd89.0162988515272590677488.jpg"></a>
+    </div>

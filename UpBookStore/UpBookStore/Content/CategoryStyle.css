@@ -1,0 +1,11 @@
+﻿img {
+    width: 100px;
+    height: 100px;
+}
+.buttonup {
+    width: 88px;
+    height: 118px;
+    position: fixed;
+    bottom: 20px;
+    right: 50px;
+}

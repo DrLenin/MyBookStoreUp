@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "UpdateA";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <form method="post" action="">
+        <input type="hidden" value="@ViewBag.Id" name="ID" />
+        <table>
+            <tr>
+                <td><p>Введите новое имя </p></td>
+                <td><input type="text" name="FIO" /> </td>
+            </tr>
+            <tr><td><input type="submit" value="Обновить" /> </td><td></td></tr>
+        </table>
+    </form>
+

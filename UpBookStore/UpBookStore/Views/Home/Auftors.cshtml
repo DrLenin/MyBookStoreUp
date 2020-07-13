@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Авторы";
+}
+    <div>
+        <div class="alert alert-warning" role="alert" id="alerWarning">
+            Это светлое уведомление — check it out!
+        </div>
+        <h3>Список авторов</h3>
+
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @{ int index = 0;
+                        foreach (var b in ViewBag.Aufrots)
+                        {
+                            index++;
+                        <tr>
+                            <th scope="row">@index.ToString()</th>
+                            <td>@b.FIO</td>
+                            @if (ViewBag.roles == "admin")
+                            {
+                                <td><p><a href="/Home/DeletA/@b.ID">Удалить</a></p><p><a href="/Home/UpdateA/@b.ID">Обновить</a></td>
+                            }
+                            else
+                            {
+                                <td><p><a href="#">Подробнее</a></p></td>
+                            }
+
+                        </tr>
+                    }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    @if (ViewBag.roles == "admin")
+    {
+        <form method="post" action="">
+            <table>
+                <tr>
+                    <td><p>Введите имя автора: </p></td>
+                    <td><input type="text" name="FIO" /> </td>
+                </tr>
+                <tr><td><input type="submit" value="Добавить" /> </td><td></td></tr>
+            </table>
+        </form>
+    }
+
