@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using UpBookStore.Models;
 
 namespace UpBookStore.Controllers
 {
+    // dswewds
     public class HomeController : Controller
     {
         BookStoreContext db = new BookStoreContext();
@@ -35,9 +37,12 @@ namespace UpBookStore.Controllers
             return dime;
 
         }
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         public ActionResult Index()
         {
-            
+            logger.Trace("trace message");
+            logger.Debug("debug message");
+            logger.Info("info message");
             var books = db.Books;
             ViewBag.Books = books;
             var auftors = db.Auftors.ToList();
