@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+}
+
+@if (Request.IsAuthenticated)
+{
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Это ваш кабинет, @User.Identity.GetUserName()</h1>
+            <div><p class="lead">В данной вкладке мы можете узнать свой email, пароль и баланс. Также вы можете перейти в корзину и оплатить товары</p></div>
+            <div>
+                <p class="lead">
+                    <div id="scrolList">@Html.Partial("_CashUp")</div>
+                    <button id="bt" type="button" class="btn btn-outline-success" >Пополнить 150р</button>
+                    <button type="button" class="btn btn-outline-success" onclick="loadCash(250)">Пополнить 250р</button>
+                    <button type="button" class="btn btn-outline-success" onclick="loadCash(350)">Пополнить 350р</button>
+                </p>
+            </div>
+            <p class="lead"><button type="button" class="btn btn-primary btn-lg btn-block">Корзина</button></p>
+        </div>
+    </div>
+}
+else
+{
+    <h2>
+        Вы не авторизировались
+        
+    </h2>
+    }
+<script>
+    
+    $(function () {
+        $('#bt').click(function() {
+        $.ajax({
+            type: 'GET',
+            url: '/PR/CashUp/150',
+            success: function (data) {
+
+                
+                $("#scrolList").text(data);
+
+            }
+        });
+    });
+    })
+   
+
+</script>

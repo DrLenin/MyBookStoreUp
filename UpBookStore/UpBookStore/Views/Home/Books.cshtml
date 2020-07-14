@@ -109,7 +109,7 @@ $('button').on('click',function () {
                 _inCallback = true;
                 page++;
                 $('div#loading').show();
-
+                
                 $.ajax({
                     type: 'GET',
                     url: '/Home/Books/' + page,

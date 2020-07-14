@@ -37,12 +37,10 @@ namespace UpBookStore.Controllers
             return dime;
 
         }
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
         public ActionResult Index()
         {
-            logger.Trace("trace message");
-            logger.Debug("debug message");
-            logger.Info("info message");
+            
             var books = db.Books;
             ViewBag.Books = books;
             var auftors = db.Auftors.ToList();

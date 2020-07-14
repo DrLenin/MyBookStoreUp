@@ -38,13 +38,16 @@
                     <a class="navbar-brand" href="#">MyBook</a>
                 </li>
                 <li class="nav-item active">
-                    @Html.ActionLink("Главная", "Index", "Home", new { @class = "nav-link" })
+                    <a class="nav-link" href="/Home/Index">Главная</a>
                 </li>
                 <li class="nav-item">
-                    @Html.ActionLink("Книги", "Books", "Home", new { @class = "nav-link" })
+                    <a class="nav-link" href="/Home/Books">Книги</a>
                 </li>
                 <li class="nav-item">
-                    @Html.ActionLink("Авторы", "Auftors", "Home", new { @class = "nav-link" })
+                    <a class="nav-link" href="/Home/Auftors">Авторы</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/PR">Личный кабинет</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

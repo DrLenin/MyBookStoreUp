@@ -16,6 +16,8 @@ namespace UpBookStore.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public int Money{ get; set; }
     }
 
 

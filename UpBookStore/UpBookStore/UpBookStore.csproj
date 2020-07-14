@@ -177,6 +177,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PRController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -270,6 +271,8 @@
     <Content Include="Views\Home\BooksAlertAdd.cshtml" />
     <Content Include="Views\Home\DeletB.cshtml" />
     <Content Include="Views\Home\_Items.cshtml" />
+    <Content Include="Views\PR\Index.cshtml" />
+    <Content Include="Views\PR\_CashUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,7 +14,7 @@ namespace UpBookStore.Models
 
         public int Price { get; set; }
 
-        public DateTime Date { get; set; }
+        public string Email { get; set; }
 
         [ForeignKey("ID_Books")]
         public Book Book { get; set; }
