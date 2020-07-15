@@ -11,10 +11,10 @@
 }
 
     <div>
-
+        
         <button id="buttons">d</button>
         <div id="results"></div>
-        <h3>Список книг</h3>
+        <h3> Список книг</h3>
         <table id="table" class="table table-sm">
             <thead>
                 <tr>
@@ -109,7 +109,7 @@ $('button').on('click',function () {
                 _inCallback = true;
                 page++;
                 $('div#loading').show();
-                
+
                 $.ajax({
                     type: 'GET',
                     url: '/Home/Books/' + page,
@@ -143,14 +143,14 @@ $('button').on('click',function () {
     +'</style>').appendTo('body');
     var
     speed = 550,
-    $scrollTop = $('<a href="#" class="scrollTop">').appendTo('body');		
+    $scrollTop = $('<a href="#" class="scrollTop">').appendTo('body');
     $scrollTop.click(function(e){
         e.preventDefault();
         $( 'html:not(:animated),body:not(:animated)' ).animate({ scrollTop: 0}, speed );
     });
 
     //появление
-    
+
 });
         </script>
         <a href="#" title="Вернуться наверх" class="buttonup"><img src="https://img2.freepng.ru/20180525/ixt/kisspng-computer-icons-world-trade-organisation-clip-art-5b081fbbb6cd89.0162988515272590677488.jpg"></a>

@@ -366,5 +366,26 @@ namespace UpBookStore.Controllers
             ViewBag.Category = category;
             return View("Category");
         }
+        [HttpGet]
+       public ActionResult AddCoci(int id)
+        {
+            string de = HttpContext?.Request?.Cookies[id.ToString()]?.Value ?? " ";
+            if (de != " ")
+            {
+                return Json("");
+            }
+            else
+            {
+                HttpContext.Response.Cookies[id.ToString()].Value = HttpContext.User.Identity.Name;
+            }
+            var books = db.Books.ToList();
+            ViewBag.Books = books;
+            var auftors = db.Auftors.ToList();
+            ViewBag.Aufrots = auftors;
+            var category = db.Categoryis.ToList();
+            ViewBag.Category = category;
+            ViewBag.roles = RoleGet();
+            return View("Books", GetItemsPage(0));
+        }
     }
 }

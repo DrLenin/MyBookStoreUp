@@ -11,12 +11,13 @@
             <div>
                 <p class="lead">
                     <div id="scrolList">@Html.Partial("_CashUp")</div>
-                    <button id="bt" type="button" class="btn btn-outline-success" >Пополнить 150р</button>
+                    <button id="bt" type="button" class="btn btn-outline-success">Пополнить 150р</button>
                     <button type="button" class="btn btn-outline-success" onclick="loadCash(250)">Пополнить 250р</button>
                     <button type="button" class="btn btn-outline-success" onclick="loadCash(350)">Пополнить 350р</button>
                 </p>
             </div>
-            <p class="lead"><button type="button" class="btn btn-primary btn-lg btn-block">Корзина</button></p>
+            <p class="lead"><a href="/PR/Box" class="badge badge-success badge-block">Корзина</a></p>
+            <p class="lead"><a href="/PR/ViewHistory" class="badge badge-success badge-block">История покупок</a></p>
         </div>
     </div>
 }
@@ -24,25 +25,25 @@ else
 {
     <h2>
         Вы не авторизировались
-        
+
     </h2>
-    }
+}
 <script>
-    
+
     $(function () {
-        $('#bt').click(function() {
-        $.ajax({
-            type: 'GET',
-            url: '/PR/CashUp/150',
-            success: function (data) {
+        $('#bt').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/PR/CashUp/150',
+                success: function (data) {
 
-                
-                $("#scrolList").text(data);
 
-            }
+                    $("#scrolList").text(data);
+
+                }
+            });
         });
-    });
     })
-   
+
 
 </script>

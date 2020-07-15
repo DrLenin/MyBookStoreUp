@@ -1,0 +1,36 @@
+﻿@model IEnumerable<UpBookStore.Models.Sell>
+@using UpBookStore.Models;
+@{
+    ViewBag.Title = "Книга";
+}
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Название</th>
+            <th scope="col">Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @{ int index = 0;
+                foreach (var b in Model)
+                {
+                    index++;
+        <tr>
+            <th scope="row">@index.ToString()</th>
+            @foreach (Book d in ViewBag.Books)
+            {
+                if (d.ID == b.ID_Books)
+                {
+                    <td>@d.Name</td>
+                }
+            }
+
+            <td>@b.Email</td>
+            <td>@b.Price</td>
+        </tr>
+            }
+            }
+        </tbody>
+    </table>

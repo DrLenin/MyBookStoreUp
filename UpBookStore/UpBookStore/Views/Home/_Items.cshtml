@@ -5,9 +5,14 @@
     <tr>
         <th scope="row">1</th>
         <td>@item.Name</td>
-        @if (ViewBag.roles == "admin")
+        @if (User.IsInRole("admin"))
         {
-            <td><p id="ddddd">@Ajax.ActionLink("Удалить", "DeletB", new { id = item.ID }, new AjaxOptions { UpdateTargetId = "results" })<p><a href="/Home/UpdateB/@item.ID">Обновить</a></td>
+            <td><p id="ddddd">@Ajax.ActionLink("Удалить", "DeletB", new { id = item.ID }, new AjaxOptions { UpdateTargetId = "results" })<p><a href="/Home/UpdateB/@item.ID">Обновить</a></p><p></p><a href="/Home/AddCoci/@item.ID">Добавить в корзину</a></td>
+        }
+        else if (!User.IsInRole("admin") && User.Identity.IsAuthenticated)
+        {
+            <td><a href="/Home/AddCoci/@item.ID">Добавить в корзину</a></td>
+
         }
         else
         {

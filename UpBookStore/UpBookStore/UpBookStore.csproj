@@ -273,6 +273,8 @@
     <Content Include="Views\Home\_Items.cshtml" />
     <Content Include="Views\PR\Index.cshtml" />
     <Content Include="Views\PR\_CashUp.cshtml" />
+    <Content Include="Views\PR\Box.cshtml" />
+    <Content Include="Views\PR\ViewHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
