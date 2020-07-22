@@ -16,8 +16,13 @@
                     <button type="button" class="btn btn-outline-success" onclick="loadCash(350)">Пополнить 350р</button>
                 </p>
             </div>
-            <p class="lead"><a href="/PR/Box" class="badge badge-success badge-block">Корзина</a></p>
-            <p class="lead"><a href="/PR/ViewHistory" class="badge badge-success badge-block">История покупок</a></p>
+            <p class="lead"><a href="/PR/Box" class = "page-link">Корзина</a></p>
+            <p class="lead"><a href="/PR/ViewHistory" class = "page-link">История покупок</a></p>
+            @if (User.IsInRole("admin"))
+            {
+                <p class="lead"><a href="/PR/ManagerRoom" class = "page-link">Управленеи акк.</a></p>
+            }
+
         </div>
     </div>
 }

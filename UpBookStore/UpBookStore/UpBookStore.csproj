@@ -185,6 +185,7 @@
     <Compile Include="Models\AppDbInitializer.cs" />
     <Compile Include="Models\Auftor.cs" />
     <Compile Include="Models\Book.cs" />
+    <Compile Include="Models\BooksAndSell.cs" />
     <Compile Include="Models\BookStoreContext.cs" />
     <Compile Include="Models\Categoryi.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -213,6 +214,7 @@
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ClassDiagram1.cd" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -275,6 +277,8 @@
     <Content Include="Views\PR\_CashUp.cshtml" />
     <Content Include="Views\PR\Box.cshtml" />
     <Content Include="Views\PR\ViewHistory.cshtml" />
+    <Content Include="Views\PR\ManagerRoom.cshtml" />
+    <Content Include="Views\PR\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

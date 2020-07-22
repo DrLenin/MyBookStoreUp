@@ -1,0 +1,29 @@
+﻿@model UpBookStore.Models.ApplicationUser
+@using Microsoft.AspNet.Identity
+
+<form method="post" action="">
+    <input type="hidden" value="@ViewBag.BookId" name="BookId" />
+    <table>
+        <tr>
+            <td><p>Введите новый email </p></td>
+            <td><input type="text" name="Email" value="@Model.Email" /> </td>
+        </tr>
+        <tr>
+            <td><p>Введите пароль :</p></td>
+            <td>
+                <input type="text" name="pas" />
+            </td>
+        </tr>
+        <td><p>Выберите роль</p></td>
+        <td>
+            <select id="wherere" name="rol">
+                <option value="Админ">Админ</option>
+                <option value="Пользователь">Пользователь</option>
+            </select>
+        </td>
+        <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
+    </table>
+</form>
+<tr>
+    
+</tr>

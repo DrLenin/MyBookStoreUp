@@ -1,0 +1,42 @@
+﻿@model IEnumerable<UpBookStore.Models.ApplicationUser>
+@using Microsoft.AspNet.Identity
+@{
+
+}
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Логин</th>
+            <th scope="col">Пароль</th>
+            <th scope="col">Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @{ int index = 0;
+                foreach (var b in Model)
+                {
+                    index++;
+                <tr>
+                    <th scope="row">@index.ToString()</th>
+
+                    <td>@b.Email</td>
+                    <td>@b.PasswordHash</td>
+                    <td>
+                        <p>
+                            @Html.ActionLink("Изменить", "Update", "PR", new { email = b.Email }, new { @class = "page-link" })
+                        </p>
+                        @if (b.Email != User.Identity.GetUserName())
+                        {
+                    <p>@Html.ActionLink("Удалить", "Update", "PR", new { email = b.Email }, new { @class = "page-link" })</p>
+                    <p>@Html.ActionLink("Забанить", "Update", "PR", new { email = b.Email }, new { @class = "page-link" })</p>
+                        }
+
+                    </td>
+
+                </tr>
+            }
+            }
+        </tbody>
+    </table>

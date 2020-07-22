@@ -120,22 +120,71 @@ namespace UpBookStore.Controllers
         }
         public ActionResult ViewHistory()
         {
-            List<Sell> sells = new List<Sell>();
+            List<BooksAndSell> sells = new List<BooksAndSell>();
             if (HttpContext.User.IsInRole("admin"))
             {
-                foreach (var sell in db.Sells)
+                foreach (var sell in db.BooksAndSells)
                 {
                     sells.Add(sell);
                 }
             } else
             {
-                foreach (var sell in db.Sells.Where(d => d.Email == HttpContext.User.Identity.Name))
+                foreach (var sell in db.BooksAndSells.Where(d => d.Email == HttpContext.User.Identity.Name))
                 {
                     sells.Add(sell);
                 }
             }
             GetViewBag();
             return View(sells);
+        }
+
+        public ActionResult ManagerRoom()
+        {
+            GetUserObject();
+            List<ApplicationUser> users = new List<ApplicationUser>();
+            foreach(var d in userManager.Users)
+            {
+                users.Add(d);
+            }
+            GetViewBag();
+            return View(users);
+        }
+
+        [HttpGet]
+        public ActionResult Update(string email)
+        {
+            GetUserObject();
+            user = userManager.FindByEmail(email);
+            return View(user);
+        }
+        [HttpPost]
+        public ActionResult Update(ApplicationUser users, string pas, string rol)
+        {
+            GetUserObject();
+            user = userManager.FindByEmail(users.Email);
+
+            
+            var resetToken = userManager.GeneratePasswordResetToken(user.Id);
+            userManager.ResetPassword(user.Id, resetToken, pas);
+            if(rol == "Админ")
+            {
+                userManager.RemoveFromRole(user.Id, "user");
+                userManager.AddToRole(user.Id, "admin");
+            } else if(rol == "Пользователь")
+            {
+                userManager.RemoveFromRole(user.Id, "admin");
+                userManager.AddToRole(user.Id, "user");
+            }
+            
+            userManager.Update(user);
+            GetUserObject();
+            List<ApplicationUser> usersd = new List<ApplicationUser>();
+            foreach (var d in userManager.Users)
+            {
+                usersd.Add(d);
+            }
+            GetViewBag();
+            return View("ManagerRoom", usersd);
         }
     }
 }
